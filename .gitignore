@@ -1,3 +1,15 @@
 # Project exclude paths
 /myvenv/
 /.idea/
+
+__pycache__/
+*.py[cod]
+
+.Python
+myvenv/
+
+db.sqlite3
+.DS_Store
+
+.vscode/
+.env
