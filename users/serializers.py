@@ -63,3 +63,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ("nickname", "name", "gender", "location", \
                   "disabled", "profileImage", "introduction")
+
+
+class ProfileGETSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ("nickname", "disabled", "profileImage")

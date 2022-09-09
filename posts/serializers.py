@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from users.serializers import ProfileSerializer
+from users.serializers import ProfileGETSerializer
 from .models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
-    profile = ProfileSerializer(read_only=True)
+    profile = ProfileGETSerializer(read_only=True)
 
     class Meta:
         model = Post
