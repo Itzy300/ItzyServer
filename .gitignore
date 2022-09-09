@@ -6,7 +6,6 @@ __pycache__/
 *.py[cod]
 
 .Python
-myvenv/
 
 db.sqlite3
 .DS_Store
