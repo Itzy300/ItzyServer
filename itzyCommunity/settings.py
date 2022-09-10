@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 import environ
+from decouple import config
 
 env = environ.Env()
 environ.Env.read_env()
@@ -26,13 +27,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-u!^%vj_#x_xzo3u!$sn*(n-4v*wtf1la%c%+za9@&!q&ul6yu_'
 SECRET_KEY = os.environ['secret_key']
+#SECRET_KEY = config('SECRET_KEY')
+#SECRET_KEY='django-insecure-u!^%vj_#x_xzo3u!$sn*(n-4v*wtf1la%c%+za9@&!q&ul6yu_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
+DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -55,13 +56,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
    # 'django.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 #CORS_ORIGIN_ALLOW_ALL = True
 #CORS_ALLOW_CREDENTIALS = True
@@ -148,6 +149,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

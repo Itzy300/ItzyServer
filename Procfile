@@ -1,1 +1,1 @@
-web: gunicorn itzyCommunity.wsgi
+web: gunicorn itzyCommunity.wsgi --log-file -
